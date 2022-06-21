@@ -1,0 +1,5 @@
+flyer-explorer.fiz-karlsruhe.de:80 {
+  reverse_proxy * http://visualanzeights:3000
+  reverse_proxy /sparql* http://shmarql:8000
+  reverse_proxy /shmarql* http://shmarql:8000
+}

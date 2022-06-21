@@ -1,0 +1,12 @@
+version: "3"
+services:
+  visualanzeights:
+    image: ghcr.io/joelosw/visualanzeights:latest
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_web
+    ports:
+      - "42010:80"
+  shmarql:
+    image: ghcr.io/epoz/shmarql:latest 
