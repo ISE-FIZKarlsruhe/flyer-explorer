@@ -1,0 +1,309 @@
+@prefix : <http://flyer-explorer.fiz-karlsruhe.de/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@base <http://flyer-explorer.fiz-karlsruhe.de/ontology/> .
+
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/created
+:created rdf:type owl:ObjectProperty ;
+         rdfs:domain fabio:PrintObject ;
+         rdfs:range [ rdf:type owl:Class ;
+                      owl:unionOf ( <http://www.w3.org/2006/time#Instant>
+                                    <http://www.w3.org/2006/time#Interval>
+                                  )
+                    ] ;
+         rdfs:comment "The property relates a printed object with intervals or instances it was created on."@en ;
+         rdfs:label "created"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/intervalAround
+:intervalAround rdf:type owl:ObjectProperty ;
+                rdfs:domain <http://www.w3.org/2006/time#Interval> ;
+                rdfs:range <http://www.w3.org/2006/time#Interval> ;
+                rdfs:comment "The property relates an anonymous interval that approximately took place around another interval."@en ;
+                rdfs:label "Interval Around"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/verification
+:verification rdf:type owl:ObjectProperty ;
+              rdfs:range :Verification ;
+              rdfs:comment "The property relates a time interval with its verification category."@en ;
+              rdfs:label "verification"@en .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain fabio:PrintObject ;
+                                       rdfs:range <http://xmlns.com/foaf/0.1/Agent> .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:ObjectProperty ;
+                                   rdfs:domain fabio:PrintObject ;
+                                   rdfs:range <http://xmlns.com/foaf/0.1/Agent> .
+
+
+###  http://purl.org/dc/terms/publisher
+<http://purl.org/dc/terms/publisher> rdf:type owl:ObjectProperty ;
+                                     rdfs:domain fabio:PrintObject ;
+                                     rdfs:range <http://xmlns.com/foaf/0.1/Agent> .
+
+
+###  http://purl.org/dc/terms/references
+<http://purl.org/dc/terms/references> rdf:type owl:ObjectProperty ;
+                                      rdfs:domain fabio:PrintObject ;
+                                      rdfs:range [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :HistoricalEvent
+                                                                 :Keyword
+                                                                 <http://schema.org/Place>
+                                                                 <http://xmlns.com/foaf/0.1/Organization>
+                                                                 <http://xmlns.com/foaf/0.1/Person>
+                                                               )
+                                                 ] .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+<http://www.w3.org/2006/time#hasBeginning> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+<http://www.w3.org/2006/time#hasEnd> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#intervalAfter
+<http://www.w3.org/2006/time#intervalAfter> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#intervalBefore
+<http://www.w3.org/2006/time#intervalBefore> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#intervalContains
+<http://www.w3.org/2006/time#intervalContains> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasAssociatedWith
+prov:wasAssociatedWith rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasGeneratedBy
+prov:wasGeneratedBy rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/caption
+:caption rdf:type owl:DatatypeProperty ;
+         rdfs:domain fabio:PrintObject ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "If available, reproduction of the text or signet affixed to the object."@en ;
+         rdfs:label "caption"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/objectHistory
+:objectHistory rdf:type owl:DatatypeProperty ;
+               rdfs:domain fabio:PrintObject ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Continuous text of the history of a printed object, its different contexts of use, conversions, etc. Specification of by who, when and in what context the object was used."@en ;
+               rdfs:label "object history"@en .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain fabio:PrintObject ;
+                                       rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/dc/terms/references
+<http://purl.org/dc/terms/references> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/ns/prov#value
+prov:value rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Brochure
+:Brochure rdf:type owl:Class ;
+          rdfs:subClassOf fabio:PrintObject ;
+          rdfs:comment "An informative paper document that usually provides advertising information and can be folded into a template."@en ;
+          rdfs:label "Brochure"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/HistoricalEvent
+:HistoricalEvent rdf:type owl:Class ;
+                 rdfs:comment "The class represents historical events mentioned or referenced in a document."@en ;
+                 rdfs:label "Historical Event"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Keyword
+:Keyword rdf:type owl:Class ;
+         rdfs:comment "The class comprises keywords mentioned or referenced in a document."@en ;
+         rdfs:label "Keyword"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/NewspaperItem
+:NewspaperItem rdf:type owl:Class ;
+               rdfs:subClassOf fabio:PrintObject ;
+               rdfs:comment "A report, a flyer or as advertisement published in a newspaper issue."@en ;
+               rdfs:label "Nespaper Item"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/PoliticalFlyer
+:PoliticalFlyer rdf:type owl:Class ;
+                rdfs:subClassOf fabio:PrintObject ;
+                rdfs:comment "A single printed document advertising some political events or ideas intended for wide distribution and usually distributed in a public place, handed out to persons."@en ;
+                rdfs:label "Political Flyer"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Program
+:Program rdf:type owl:Class ;
+         rdfs:subClassOf fabio:PrintObject ;
+         rdfs:comment "A document that contains programming information about an event."@en ;
+         rdfs:label "Program"@en .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Verification
+:Verification rdf:type owl:Class ;
+              rdfs:comment "The class categorises temporal information of the documents according to the certainity degree as provided by Haus der Geschichte Baden-Württemberg. As of now three instances of Verification are included to the schema: Dated, Approximated and Proven."@en ;
+              rdfs:label "Verification"@en .
+
+
+###  http://purl.org/spar/fabio/PrintObject
+fabio:PrintObject rdf:type owl:Class .
+
+
+###  http://schema.org/Place
+<http://schema.org/Place> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Instant
+<http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Interval
+<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#SoftwareAgent
+prov:SoftwareAgent rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+<http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Approximated
+:Approximated rdf:type owl:NamedIndividual ,
+                       :Verification .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Dated
+:Dated rdf:type owl:NamedIndividual ,
+                :Verification .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Proven
+:Proven rdf:type owl:NamedIndividual ,
+                 :Verification .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1011918
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1011918> rdf:type owl:NamedIndividual ,
+                                                                   <http://www.w3.org/2006/time#Instant> ;
+                                                          <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1918-01-01T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1011919
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1011919> rdf:type owl:NamedIndividual ,
+                                                                   <http://www.w3.org/2006/time#Instant> ;
+                                                          <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1919-01-01T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1011920
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1011920> rdf:type owl:NamedIndividual ,
+                                                                   <http://www.w3.org/2006/time#Instant> ;
+                                                          <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1920-01-01T00:00:00Z"^^xsd:dateTimeStamp .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1918
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1918> rdf:type owl:NamedIndividual ,
+                                                                <http://www.w3.org/2006/time#Interval> ;
+                                                       <http://www.w3.org/2006/time#hasBeginning> <http://flyer-explorer.fiz-karlsruhe.de/ontology/1011918> ;
+                                                       <http://www.w3.org/2006/time#hasEnd> <http://flyer-explorer.fiz-karlsruhe.de/ontology/31121918> .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1919
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1919> rdf:type owl:NamedIndividual ,
+                                                                <http://www.w3.org/2006/time#Interval> ;
+                                                       <http://www.w3.org/2006/time#hasBeginning> <http://flyer-explorer.fiz-karlsruhe.de/ontology/1011919> ;
+                                                       <http://www.w3.org/2006/time#hasEnd> <http://flyer-explorer.fiz-karlsruhe.de/ontology/31121919> .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/1920
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/1920> rdf:type owl:NamedIndividual ,
+                                                                <http://www.w3.org/2006/time#Interval> ;
+                                                       <http://www.w3.org/2006/time#hasBeginning> <http://flyer-explorer.fiz-karlsruhe.de/ontology/1011920> ;
+                                                       <http://www.w3.org/2006/time#hasEnd> <http://flyer-explorer.fiz-karlsruhe.de/ontology/31121920> .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/31121918
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/31121918> rdf:type owl:NamedIndividual ,
+                                                                    <http://www.w3.org/2006/time#Instant> ;
+                                                           <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1918-12-31T23:59:59Z"^^xsd:dateTimeStamp .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/31121919
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/31121919> rdf:type owl:NamedIndividual ,
+                                                                    <http://www.w3.org/2006/time#Instant> ;
+                                                           <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1919-12-31T23:59:59Z"^^xsd:dateTimeStamp .
+
+
+###  http://flyer-explorer.fiz-karlsruhe.de/ontology/31121920
+<http://flyer-explorer.fiz-karlsruhe.de/ontology/31121920> rdf:type owl:NamedIndividual ,
+                                                                    <http://www.w3.org/2006/time#Instant> ;
+                                                           <http://www.w3.org/2006/time#inXSDDateTimeStamp> "1920-12-31T23:59:59Z"^^xsd:dateTimeStamp .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
