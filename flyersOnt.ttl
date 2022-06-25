@@ -188,7 +188,7 @@ prov:value rdf:type owl:DatatypeProperty .
 
 ###  http://flyer-explorer.fiz-karlsruhe.de/ontology/Verification
 :Verification rdf:type owl:Class ;
-              rdfs:comment "The class categorises temporal information of the documents according to the certainity degree as provided by Haus der Geschichte Baden-Württemberg. As of now three instances of Verification are included to the schema: Dated, Approximated and Proven."@en ;
+              rdfs:comment "The class categorises temporal information of the documents according to the certainty degree as provided by Haus der Geschichte Baden-Württemberg. As of now three instances of Verification are included to the schema: Dated, Approximated and Proven."@en ;
               rdfs:label "Verification"@en .
 
 
